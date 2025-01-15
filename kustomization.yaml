@@ -1,0 +1,16 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+resources:
+- deployment.yaml
+- service.yaml
+- route.yaml
+
+configMapGenerator:
+- files:
+  - index.html
+  name: index-html
+images:
+- name: httpd
+  newName: registry.redhat.io/ubi9/httpd-24
+  newTag: 9.5-1736455706
